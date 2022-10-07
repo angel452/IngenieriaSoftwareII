@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block style %}
+h1 {
+    color: green;
+}
+{% endblock %}
+
+{% block content %}
+<H1>List view! </H1>
+
+{{ queryset }}
+
+{% endblock %}
