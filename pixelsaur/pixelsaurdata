@@ -1,0 +1,26 @@
+usernames and paswords for each username:
+test1 = $&yH71m1USGG
+
+
+to start the database:
+db user: luisadmi
+dbpassword: 1234
+database name: pixelsaurdb
+database password: 1234
+https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-20-04
+
+to start virtualenv:
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/skeleton_website (previous tutorial to this)
+
+create superuser
+name: luishuachaca
+password: $&yH71m1USGG
+
+PAT GITHUB:
+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
+
+
+add author: http://127.0.0.1:8000/catalog/author/create/
+uptdate author: http://127.0.0.1:8000/catalog/author/10/update/
+delete author: http://127.0.0.1:8000/catalog/author/10/delete/
+http://127.0.0.1:8000/catalog/book/create/
