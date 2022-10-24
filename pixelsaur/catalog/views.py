@@ -1,8 +1,9 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 
-
+"""
 from .forms import ProductAddForm
+
 from .models import Product
 # Create your views here.
 
@@ -57,3 +58,4 @@ def list_view(request):
         "queryset": queryset
     }
     return render(request, template, context)
+"""
