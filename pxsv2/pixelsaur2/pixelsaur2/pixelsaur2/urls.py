@@ -20,13 +20,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('pixelsaurapp/',include('pixelsaurapp.urls')),
-] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
-
-#Add URL maps to redirect the base URL to our application
-from django.views.generic import RedirectView
-urlpatterns += [
-    path('', RedirectView.as_view(url='pixelsaurapp/', permanent=True)),
+    path('', include('pixelsaurapp.urls', namespace='pixelsaurapp')),
 ]
 
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT)

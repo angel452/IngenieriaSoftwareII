@@ -1,13 +1,14 @@
 from django.contrib import admin
-from .models import contenido
-from .models import Categoria
-# Register your models here.
-#admin.site.register(contenido)
-#admin.site.register(Categoria)
-@admin.register(contenido)
-class contenidoAdmin(admin.ModelAdmin):
-    list_display = ('name', 'precio','media_banner')
+from .models import Category, Product
 
-#@admin.register(Categoria)
-#class CategoriaAdmin(admin.ModelAdmin):
-#    pass
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug']
+    prepopulated_fields = {'slug': ('name',)}
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug', 'price','available', 'created', 'updated']
+    list_filter = ['available', 'created', 'updated']
+    list_editable = ['price', 'available']
+    prepopulated_fields = {'slug': ('name',)}
