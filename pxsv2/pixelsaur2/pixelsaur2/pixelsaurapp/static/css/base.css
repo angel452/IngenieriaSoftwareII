@@ -85,6 +85,7 @@ thead th, tbody tr.total {
 select .id_quantity{
     background: #7DE2D1;
 }
+
 table.cart {
     margin-bottom:40px;
     margin-left: 25%;
@@ -105,6 +106,27 @@ td input[type="submit"] {
     font-size:12px;
     padding:4px 10px;
 }
+
+#couponform {
+    display: block;
+    margin-top: 0em;
+    overflow:auto;
+    margin-left: 25%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+  }
 
 form p label, form p input {
     float:left;
@@ -379,7 +401,6 @@ p{
     color: #ececec;
     font-weight: 300;
 }
-
 
 
 
