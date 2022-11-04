@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-  <div class="product-detail">
+  <div class="product-detail" style="margin-left: 50px">
     <img src="{% if product.image %}{{ product.image.url }}{% else %}
     {% static "img/no_image.png" %}{% endif %}">
     <h1>{{ product.name }}</h1>
