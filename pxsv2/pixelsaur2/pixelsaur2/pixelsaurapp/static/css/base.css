@@ -106,6 +106,10 @@ td input[type="submit"] {
     padding:4px 10px;
 }
 
+form {
+    margin-left: 25%;
+}
+
 form p label, form p input {
     float:left;
     clear:both;
@@ -379,7 +383,6 @@ p{
     color: #ececec;
     font-weight: 300;
 }
-
 
 
 
