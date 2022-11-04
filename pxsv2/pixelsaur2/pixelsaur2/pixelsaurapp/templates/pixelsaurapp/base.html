@@ -6,21 +6,16 @@
   <meta charset="utf-8" />
   <title>{% block title %}Pixelsaur{% endblock %}</title>
   <link href="{% static "css/base.css" %}" rel="stylesheet">
+
+  <!--Fix error favicon-->
+  <link rel="shortcut icon" href="#">
+  
 </head>
 
-<body>
-  <div id="header">
-    <a href="/" class="logo">Pixelsaur</a>
-  </div>
-  <div id="subheader">
-    <div class="cart">
-      Your cart is empty.
+  <body>
+    <div id="content">
+      {% block content %}
+      {% endblock %}
     </div>
-  </div>
-  <div id="content">
-    {% block content %}
-    {% endblock %}
-  </div>
-</body>
-
+  </body>
 </html>

@@ -1,0 +1,116 @@
+{% extends "pixelsaurapp/base.html" %}
+{% load static %}
+
+{% block title %}
+Your shopping cart
+{% endblock %}
+
+{% block content %}
+<div id="sidebar">
+  <img href="/" class="logo" src="{% static "img/logo_pixelsaur.png" %}"><br><br><br>
+
+  <ul>
+    <li {% if not category %}class="selected"{% endif %}>
+      <a href="{% url "pixelsaurapp:product_list" %}" style="font-weight: 400; color:#FFFAFB">Categorías</a>
+    </li>
+    {% for c in categories %}
+      <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+        <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+<div id="subheader">
+  <div class="cart">
+    {% with total_items=cart|length %}
+      {% if total_items > 0 %}
+      <img class="cart_img" src="{% static "img/cart.png" %}">
+        <a href="{% url "cart:cart_detail" %}" style="color:#FFFAFB; font-weight:300">
+          {{ total_items }} item{{ total_items|pluralize }},
+          ${{ cart.get_total_price }}
+        </a>
+      {% else %}
+        Your cart is empty.
+      {% endif %}
+    {% endwith %}
+  </div>
+</div>
+
+  <table class="cart">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Product</th>
+        <th>Remove</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart %}
+        {% with product=item.product %}
+          <tr>
+            <td>
+              <a href="{{ product.get_absolute_url }}">
+                <img src="{% if product.image %}{{ product.image.url }}
+                {% else %}{% static "img/no_image.png" %}{% endif %}">
+              </a>
+            </td>
+            <td>{{ product.name }}</td>
+            <td>
+              <form action="{% url "cart:cart_remove" product.id %}" method="post">
+                <input type="submit" value="Remove">
+                {% csrf_token %}
+              </form>
+            </td>
+            <td class="num">${{ item.total_price }}</td>
+          </tr>
+        {% endwith %}
+      {% endfor %}
+     {% if cart.coupon %}
+    <tr class="subtotal">
+      <td>Subtotal</td>
+      <td colspan="2"></td>
+      <td class="num">${{ cart.get_total_price|floatformat:2 }}</td>
+    </tr>
+    <tr>
+      <td>
+        "{{ cart.coupon.code }}" coupon
+        ({{ cart.coupon.discount }}% off)
+      </td>
+      <td colspan="2"></td>
+      <td class="num neg">
+        - ${{ cart.get_discount|floatformat:2 }}
+      </td>
+    </tr>
+    {% endif %}
+    <tr class="total">
+      <td>Total</td>
+      <td colspan="2"></td>
+      <td class="num">
+        ${{ cart.get_total_price_after_discount|floatformat:2 }}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div id="couponform" class="row">
+    <div class="column">
+      <p>Apply a coupon:</p>
+      <form action="{% url "coupons:apply" %}" method="post">
+        {{ coupon_apply_form }}
+        <input type="submit" value="Apply">
+        {% csrf_token %}
+      </form>
+    </div>
+    <div class="column">
+      
+    </div>
+  </div>
+  <p class="text-right">
+    <a href="{% url "pixelsaurapp:product_list" %}" class="button
+      light">Continue shopping</a>
+    <a href="{% url "orders:order_create" %}" class="button">
+      Checkout
+    </a>
+  </p>
+ 
+{% endblock %}

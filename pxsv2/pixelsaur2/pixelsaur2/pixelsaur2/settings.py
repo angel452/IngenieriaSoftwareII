@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pixelsaurapp.apps.PixelsaurappConfig',
+    'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
+    'coupons.apps.CouponsConfig',
     #'coupons',
 ]
 
@@ -65,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -80,8 +84,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pixelsaurdb2',
+
+        ############### CAMBIAR NOMBRE Y CONTRASEÑA  ########################
         'USER': 'angel',
         'PASSWORD': 'password',
+        #####################################################################
+        
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -126,6 +134,8 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
+
+CART_SESSION_ID = 'cart'
 #STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
 
 # Default primary key field type
