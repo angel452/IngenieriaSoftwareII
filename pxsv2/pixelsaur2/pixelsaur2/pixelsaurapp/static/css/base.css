@@ -1,14 +1,22 @@
 @import url(//fonts.googleapis.com/css?family=Ubuntu);
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;700&display=swap');
+
+html{
+    height: 100%;
+}
 
 body {
     margin:0;
     padding:0;
-    font-family:'Quicksand', sans-serif;
+    padding-top: 0;
+    font-family:'Quicksand', sans-serif; font-weight: 600;
+    height: 100%;
     background-color: #363636;
 }
 
 h1, h2, h3, h4, h5 , h6 {
-    font-family: 'Quicksand', sans-serif; font-weight:normal;
+    font-family: 'Quicksand', sans-serif; font-weight: 600;
+    color:#ececec;
 }
 
 a {
@@ -22,7 +30,7 @@ a:hover {
 
 a.button, input[type="submit"] {
     color:#fff;
-    background:#5993bb;
+    background:#339989;
     border-radius:4px;
     padding:10px 20px;
     font-size:14px;
@@ -32,6 +40,7 @@ a.button, input[type="submit"] {
 a.button.light {
     color:#666;
     background:#ededed;
+    margin-right: 10px;
 }
 
 .text-left {
@@ -40,12 +49,14 @@ a.button.light {
 
 .text-right {
     text-align:right;
+    margin-right: 100px;
 }
 
 table {
-    width:100%;
-    border-spacing:0;
+    width:70%;
     border-collapse: collapse;
+    flex: 30%;
+
 }
 
 table th, table td {
@@ -53,10 +64,12 @@ table th, table td {
     font-size:14px;
     padding:10px;
     margin:0;
+    font-weight: 300;
+    color: #FFFAFB;
 }
 
 tbody tr:nth-child(odd) {
-    background:#efefef;
+    background:#2D2D2D;
 }
 
 tbody tr.subtotal {
@@ -64,13 +77,18 @@ tbody tr.subtotal {
 }
 
 thead th, tbody tr.total {
-    background:#5993bb;
+    background:#2D2D2D;
     color:#fff;
     font-weight:bold;
 }
 
+select .id_quantity{
+    background: #7DE2D1;
+}
 table.cart {
     margin-bottom:40px;
+    margin-left: 25%;
+    margin-right: 400px;
 }
 
 table.cart img {
@@ -79,6 +97,8 @@ table.cart img {
 
 tbody td.num {
     text-align:right;
+    color: #FFFAFB;
+    font-weight: 600;
 }
 
 td input[type="submit"] {
@@ -124,37 +144,53 @@ ul.errorlist {
 }
 
 #subheader {
-    background:#ececec;
+    margin-left: 24%;
+    background-color: #363636;
     color:#444;
     padding:15px 100px;
     overflow:auto;
-}
-
-#header .logo {
-    float:left;
-    margin-right:10%;
-    width: 10%;
+    float:right;
 }
 
 #subheader .cart {
-    float:right;
     padding-top:4px;
+    float: right;
+}
+
+#subheader .cart_img {
+    width: 24px;
 }
 
 #content {
-    padding:0 100px;
     overflow:hidden;
+    position: relative;
+    height: 100%;
 }
 
 #sidebar {
-    width:220px;
-    padding:30px 20px 0 0;
+    width: 20%;
+    padding:0 20px 0 0;
+    position: absolute;
     float:left;
+    background-color: #2D2D2D;
+    margin-left: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #2D2D2D no-repeat top;
 }
 
 #sidebar ul{
     margin:0;
     padding:0;
+}
+
+#sidebar .logo {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
 }
 
 #sidebar ul li {
@@ -165,34 +201,41 @@ ul.errorlist {
 
 #sidebar ul li a {
     display:block;
+    color: #339989;
 }
 
 #sidebar ul li.selected {
-    color: #339989;
+    color: #7DE2D1;
     border-radius:4px;
 }
 
 #sidebar ul li.selected a {
-    color:#fff;
+    color: #7DE2D1;
 }
 
 #main {
     float:left;
     width: 96%;
     margin-right:-220px;
+    margin-left: 25%;
     overflow:hidden;
-}
+    padding-right:250px;
+    position: relative;
+    height: 100%;
+    }
 
 .product-list .item {
-    width:25%;
-    padding:10px 20px 10px 0;
+    width:18%;
+    padding:20px 10px 20px 10px;
     float:left;
     text-align:center;
     line-height:1.2;
+    background-color: #2D2D2D;
+    color: #FFFAFB;
 }
 
 .product-list .item img {
-    width:100%;
+    width:90%;
     margin-bottom:8px;
 }
 
@@ -230,11 +273,11 @@ ul.errorlist {
     background:#efefef;
     padding:10px 20px;
     color:#333;
-    border-bottom:4px solid #5993bb;
+    border-bottom:4px solid #339989;
 }
 
 .order-info h3 {
-    color:#5993bb;
+    color:#339989;
 }
 
 .order-info ul li {
@@ -323,10 +366,20 @@ form div.field {
     margin-bottom:10px;
     padding:6px 12px;
     border:0;
-    background:#efefef;
+    background:#363636;
     color:#666;
     border-radius:4px;
 }
+
+label{
+    color: #ececec;
+}
+
+p{
+    color: #ececec;
+    font-weight: 300;
+}
+
 
 
 

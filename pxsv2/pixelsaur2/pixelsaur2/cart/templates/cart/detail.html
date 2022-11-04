@@ -6,7 +6,36 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Your shopping cart</h1>
+<div id="sidebar">
+  <img href="/" class="logo" src="{% static "img/logo_pixelsaur.png" %}"><br><br><br>
+
+  <ul>
+    <li {% if not category %}class="selected"{% endif %}>
+      <a href="{% url "pixelsaurapp:product_list" %}" style="font-weight: 400; color:#FFFAFB">Categorías</a>
+    </li>
+    {% for c in categories %}
+      <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+        <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+<div id="subheader">
+  <div class="cart">
+    {% with total_items=cart|length %}
+      {% if total_items > 0 %}
+      <img class="cart_img" src="{% static "img/cart.png" %}">
+        <a href="{% url "cart:cart_detail" %}" style="color:#FFFAFB; font-weight:300">
+          {{ total_items }} item{{ total_items|pluralize }},
+          ${{ cart.get_total_price }}
+        </a>
+      {% else %}
+        Your cart is empty.
+      {% endif %}
+    {% endwith %}
+  </div>
+</div>
+
   <table class="cart">
     <thead>
       <tr>
@@ -57,9 +86,10 @@
   </table>
   <p class="text-right">
     <a href="{% url "pixelsaurapp:product_list" %}" class="button
-    light">Continue shopping</a>
+    light">Continue shopping
+    </a>
     <a href="{% url "orders:order_create" %}" class="button">
       Checkout
-      </a>
-    </p>
+    </a>
+  </p>
 {% endblock %}
