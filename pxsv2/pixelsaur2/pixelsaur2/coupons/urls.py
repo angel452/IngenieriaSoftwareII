@@ -1,4 +1,9 @@
-from django.conf.urls import url
-from .import views 
-urlpatterns = [url(r'^apply/$',views.coupon_apply,name='apply'),
+from django.urls import path
+from . import views
+
+
+app_name = 'coupons'
+
+urlpatterns = [
+    path('apply/', views.coupon_apply, name='apply'),
 ]
