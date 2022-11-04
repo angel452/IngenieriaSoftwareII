@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'pixelsaurapp.apps.PixelsaurappConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'coupons.apps.CouponsConfig',
     #'coupons',
 ]
 
