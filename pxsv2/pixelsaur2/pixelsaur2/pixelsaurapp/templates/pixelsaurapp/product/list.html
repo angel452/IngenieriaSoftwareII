@@ -7,6 +7,9 @@
 
 {% block content %}
   <div id="sidebar">
+    <div id="header">
+      <img href="/" class="logo" src="{% static "img/logo pixelsaur.png" %}">
+    </div>
     <h3>Categories</h3>
     <ul>
       <li {% if not category %}class="selected"{% endif %}>

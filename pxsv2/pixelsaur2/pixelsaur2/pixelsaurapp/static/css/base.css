@@ -3,16 +3,17 @@
 body {
     margin:0;
     padding:0;
-    font-family:helvetica, sans-serif;
+    font-family:'Quicksand', sans-serif;
+    background-color: #363636;
 }
 
 h1, h2, h3, h4, h5 , h6 {
-    font-family: 'Ubuntu', sans-serif; font-weight:normal;
+    font-family: 'Quicksand', sans-serif; font-weight:normal;
 }
 
 a {
     text-decoration:none;
-    color:#5993bb;
+    color: #339989;
 }
 
 a:hover {
@@ -130,11 +131,9 @@ ul.errorlist {
 }
 
 #header .logo {
-    font-family: 'Ubuntu', sans-serif;
     float:left;
-    color:#333;
-    font-size:22px;
     margin-right:10%;
+    width: 10%;
 }
 
 #subheader .cart {
@@ -169,7 +168,7 @@ ul.errorlist {
 }
 
 #sidebar ul li.selected {
-    background:#5993bb;
+    color: #339989;
     border-radius:4px;
 }
 
@@ -328,3 +327,13 @@ form div.field {
     color:#666;
     border-radius:4px;
 }
+
+
+
+ /* PALETA
+ emerald: #339989
+ water sprite: #7DE2D1
+ light gray: #FFFAFB
+ white: FFFFFF
+ gray: #363636;
+ dark gray: #2D2D2D */
