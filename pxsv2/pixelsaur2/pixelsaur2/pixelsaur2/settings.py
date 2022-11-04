@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pixelsaurdb2',
-        'USER': 'luis2',
-        'PASSWORD': '1234',
+        'USER': 'angel',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '',
     }
