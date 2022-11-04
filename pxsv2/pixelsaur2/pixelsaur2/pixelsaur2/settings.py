@@ -84,8 +84,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pixelsaurdb2',
+
+        ############### CAMBIAR NOMBRE Y CONTRASEÑA  ########################
         'USER': 'angel',
         'PASSWORD': 'password',
+        #####################################################################
+        
         'HOST': 'localhost',
         'PORT': '',
     }
