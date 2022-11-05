@@ -8,6 +8,9 @@ from .cart import Cart
 from .forms import CartAddProductForm
 from coupons.forms import CouponApplyForm
 
+#require_POST es necesario ya que estas funciones se validan despues de enviar el formulario
+
+#Funcion para agregar productos al carro, verificar el formulario y existencia de producto
 @require_POST
 def cart_add(request, product_id):
     cart = Cart(request)
@@ -18,6 +21,7 @@ def cart_add(request, product_id):
         cart.add(product=product, quantity=cd['quantity'], override_quantity=cd['override'])
     return redirect('cart:cart_detail')
 
+#FUncion para eliminar productos del carrito
 @require_POST
 def cart_remove(request, product_id):
     cart = Cart(request)
@@ -25,6 +29,7 @@ def cart_remove(request, product_id):
     cart.remove(product)
     return redirect('cart:cart_detail')
 
+#FUncion para mostrar el precio de detalle despues de agregacion de descuento
 def cart_detail(request):
     cart = Cart(request)
     for item in cart:

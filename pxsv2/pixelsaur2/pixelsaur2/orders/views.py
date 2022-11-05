@@ -1,10 +1,11 @@
 from django.shortcuts import render
-
-# Create your views here.
 from django.shortcuts import render
 from .models import OrderItem
 from .forms import OrderCreateForm
 from cart.cart import Cart
+
+#funcion para colocar la orden en la tabla de ordenes, llamamos a los html donde mostrara 'created' 
+# si se cumplio la funcion (si ya se hizo POST)
 def order_create(request):
     cart = Cart(request)
     if request.method == 'POST':

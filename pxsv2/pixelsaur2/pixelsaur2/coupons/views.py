@@ -5,7 +5,8 @@ from .models import Coupon
 from .forms import CouponApplyForm
 # Create your views here.
 
-
+#aplicar cupon: requerimos llamada de formulario, queremos la sesion del usuario para 
+#obtener datos del formulario, comprobamos con la tabla cupones para aplicar
 @require_POST
 def coupon_apply(request):
     now = timezone.now()

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Category, Product
-
+#LISTADO de elementos en admin
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     search_fields=['name']
