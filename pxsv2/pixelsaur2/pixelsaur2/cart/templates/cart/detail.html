@@ -6,6 +6,8 @@ Your shopping cart
 {% endblock %}
 
 {% block content %}
+
+<!--Sidebar de las categorias-->
 <div id="sidebar">
   <img href="/" class="logo" src="{% static "img/logo_pixelsaur.png" %}"><br><br><br>
 
@@ -20,6 +22,7 @@ Your shopping cart
     {% endfor %}
   </ul>
 </div>
+<!--Header arriba derecha de la imagen del carrito-->
 <div id="subheader">
   <div class="cart">
     {% with total_items=cart|length %}
@@ -36,6 +39,7 @@ Your shopping cart
   </div>
 </div>
 
+<!--Tabla de descripcion unitaria de elementos en el carrito-->
   <table class="cart">
     <thead>
       <tr>
@@ -48,6 +52,8 @@ Your shopping cart
       </tr>
     </thead>
     <tbody>
+
+<!--recorrido para mostrar imagenes y precio-->
       {% for item in cart %}
         {% with product=item.product %}
           <tr>
