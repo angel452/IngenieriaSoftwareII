@@ -4,3 +4,4 @@
 /pixelvenv
 *.pyc
 __pycache__
+/.vscode
