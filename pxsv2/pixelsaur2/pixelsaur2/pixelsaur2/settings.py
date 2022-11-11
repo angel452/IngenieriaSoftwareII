@@ -145,6 +145,7 @@ CART_SESSION_ID = 'cart'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Login files
-LOGIN_REDIRECT_URL = 'account:dashboard' #after correct login
+#LOGIN_REDIRECT_URL = 'account:dashboard' #after correct login
+LOGIN_REDIRECT_URL = 'pixelsaurapp:product_list' 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
