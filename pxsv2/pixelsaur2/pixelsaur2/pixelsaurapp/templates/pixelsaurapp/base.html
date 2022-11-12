@@ -2,17 +2,28 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8" />
-  <title>{% block title %}Pixelsaur{% endblock %}</title>
-  <link href="{% static "css/base.css" %}" rel="stylesheet">
-
-  <!--Fix error favicon-->
-  <link rel="shortcut icon" href="#">
-  
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}Pixelsaur{% endblock %}</title>
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <link rel="shortcut icon" href="#"> <!--Fix error favicon-->
+  </head>
 
   <body>
+    <!-- Este Div es el nuevo para el login -->
+    <div id="header">
+      <!-- Aqui codigo backup -->
+      <li> <a href="http://127.0.0.1:8000/admin/"> <span>Login Administrator</span> </a> </li>
+
+      <span class="user">
+        {% if request.user.is_authenticated %}
+          Hello {{ request.user.first_name }}, <a href="{% url 'account:logout' %}">Logout</a>
+        {% else %}
+          <a href="{% url 'account:login' %}"> Log-in </a>
+        {% endif %}
+      </span>
+    </div>
+
     <div id="content">
       {% block content %}
       {% endblock %}

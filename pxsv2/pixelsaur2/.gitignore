@@ -1,6 +1,7 @@
 # created by virtualenv automatically
 #*
-/tutorial-env
-/pixelvenv
+#/tutorial-env
+#/pixelvenv
 *.pyc
 __pycache__
+/.vscode

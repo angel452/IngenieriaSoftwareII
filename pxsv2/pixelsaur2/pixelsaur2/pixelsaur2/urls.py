@@ -20,12 +20,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('account/', include('account.urls', namespace='account')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
     path('coupons/', include('coupons.urls', namespace='coupons')),
-    path('', include('pixelsaurapp.urls', namespace='pixelsaurapp')),
+    path('', include('pixelsaurapp.urls', namespace='pixelsaurapp')), #tiene que cambiarse
+
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-        document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
