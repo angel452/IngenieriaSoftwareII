@@ -12,7 +12,4 @@ urlpatterns = [
 
     #path('', views.dashboard, name='dashboard')  #this name: dashboard have to put in settings.py 
 
-    #For Change Password
-    path('password_chage', auth_views.PasswordChangeDoneView.as_view(), name='password_change'),
-    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
 ]
