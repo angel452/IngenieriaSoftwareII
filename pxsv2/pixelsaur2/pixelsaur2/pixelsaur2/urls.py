@@ -24,7 +24,7 @@ urlpatterns = [
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
     path('coupons/', include('coupons.urls', namespace='coupons')),
-    path('products/', include('pixelsaurapp.urls', namespace='pixelsaurapp')),
+    path('', include('pixelsaurapp.urls', namespace='pixelsaurapp')), #tiene que cambiarse
 
 ]
 

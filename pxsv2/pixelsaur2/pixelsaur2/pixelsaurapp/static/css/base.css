@@ -11,7 +11,7 @@ body {
     padding-top: 0;
     font-family:'Quicksand', sans-serif; font-weight: 600;
     height: 100%;
-    background-color: #363636;
+    background-color: #889696;
 }
 
 h1, h2, h3, h4, h5 , h6 {
@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5 , h6 {
 
 a {
     text-decoration:none;
-    color: #339989;
+    color: #52b788;
 }
 
 a:hover {
@@ -30,7 +30,7 @@ a:hover {
 
 a.button, input[type="submit"] {
     color:#fff;
-    background:#339989;
+    background:#52b788;
     border-radius:4px;
     padding:10px 20px;
     font-size:14px;
@@ -65,11 +65,11 @@ table th, table td {
     padding:10px;
     margin:0;
     font-weight: 300;
-    color: #FFFAFB;
+    color: #e7d8c9;
 }
 
 tbody tr:nth-child(odd) {
-    background:#2D2D2D;
+    background:#5f7470;
 }
 
 tbody tr.subtotal {
@@ -77,13 +77,13 @@ tbody tr.subtotal {
 }
 
 thead th, tbody tr.total {
-    background:#2D2D2D;
+    background:#5f7470;
     color:#fff;
     font-weight:bold;
 }
 
 select .id_quantity{
-    background: #7DE2D1;
+    background: #95d5b2;
 }
 
 table.cart {
@@ -98,7 +98,7 @@ table.cart img {
 
 tbody td.num {
     text-align:right;
-    color: #FFFAFB;
+    color: #e7d8c9;
     font-weight: 600;
 }
 
@@ -167,7 +167,7 @@ ul.errorlist {
 
 #subheader {
     margin-left: 24%;
-    background-color: #363636;
+    background-color: #889696;
     color:#444;
     padding:15px 100px;
     overflow:auto;
@@ -194,13 +194,13 @@ ul.errorlist {
     padding:0 20px 0 0;
     position: absolute;
     float:left;
-    background-color: #2D2D2D;
+    background-color: #5f7470;
     margin-left: 0;
     height: 100%;
     top: 0;
     left: 0;
     bottom: 0;
-    background: #2D2D2D no-repeat top;
+    background: #5f7470 no-repeat top;
 }
 
 #sidebar ul{
@@ -223,16 +223,16 @@ ul.errorlist {
 
 #sidebar ul li a {
     display:block;
-    color: #339989;
+    color: #52b788;
 }
 
 #sidebar ul li.selected {
-    color: #7DE2D1;
+    color: #95d5b2;
     border-radius:4px;
 }
 
 #sidebar ul li.selected a {
-    color: #7DE2D1;
+    color: #95d5b2;
 }
 
 #main {
@@ -252,8 +252,8 @@ ul.errorlist {
     float:left;
     text-align:center;
     line-height:1.2;
-    background-color: #2D2D2D;
-    color: #FFFAFB;
+    background-color: #5f7470;
+    color: #e7d8c9;
 }
 
 .product-list .item img {
@@ -275,6 +275,7 @@ ul.errorlist {
     width:40%;
     float:left;
     padding:0 20px 20px 0;
+    margin-left:20%;
 }
 
 .product-detail h1 {
@@ -295,11 +296,11 @@ ul.errorlist {
     background:#efefef;
     padding:10px 20px;
     color:#333;
-    border-bottom:4px solid #339989;
+    border-bottom:4px solid #52b788;
 }
 
 .order-info h3 {
-    color:#339989;
+    color:#52b788;
 }
 
 .order-info ul li {
@@ -388,7 +389,7 @@ form div.field {
     margin-bottom:10px;
     padding:6px 12px;
     border:0;
-    background:#363636;
+    background:#889696;
     color:#666;
     border-radius:4px;
 }
@@ -405,9 +406,9 @@ p{
 
 
  /* PALETA
- emerald: #339989
- water sprite: #7DE2D1
- light gray: #FFFAFB
+ emerald: #52b788
+ water sprite: #95d5b2
+ light gray: #e7d8c9
  white: FFFFFF
- gray: #363636;
- dark gray: #2D2D2D */
+ gray: #889696;
+ dark gray: #5f7470 */
