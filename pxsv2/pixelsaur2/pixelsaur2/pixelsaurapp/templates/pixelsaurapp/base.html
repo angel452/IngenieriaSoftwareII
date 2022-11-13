@@ -7,6 +7,8 @@
     <title>{% block title %}Pixelsaur{% endblock %}</title>
     <link href="{% static "css/base.css" %}" rel="stylesheet">
     <link rel="shortcut icon" href="#"> <!--Fix error favicon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/801dcde776.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -25,6 +27,28 @@
     </div>
 
     <div id="content">
+      <div id="sidebar">
+        <img href="/" class="logo" src="{% static "img/logo_pixelsaur.png" %}"><br><br><br>
+        
+        <ul>
+            <ul>
+              <li><a href=""><i class="fa fa-circle-user" aria-hidden="true"></i> Perfil</a></li>
+              <li><a href=""><i class="fa fa-search" aria-hidden="true"></i> Buscar</a></li>
+              <li><a href=""><i class="fa-solid fa-book " aria-hidden="true"></i> Biblioteca</a></li>
+              <li><a href=""><i class="fa fa-duotone fa-wallet" aria-hidden="true" ></i> Balance</a></li>
+              
+            </ul>
+            
+            <li {% if not category %}class="selected"{% endif %}>
+              <a href="{% url "pixelsaurapp:product_list" %}" style="font-weight: 400; color:#FFFAFB">Categorías</a>
+            </li>
+            {% for c in categories %}
+            <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+              <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+      </div>
       {% block content %}
       {% endblock %}
     </div>
