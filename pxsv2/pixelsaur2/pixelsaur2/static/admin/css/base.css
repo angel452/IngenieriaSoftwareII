@@ -65,6 +65,22 @@ html, body {
     height: 100%;
 }
 
+.product-list .item {
+    padding:20px 10px 20px 10px;
+    float:left;
+    text-align:center;
+    line-height:1.2;
+    background-color: #5f7470;
+    color: #e7d8c9;
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-list .item img {
+    max-width: 170px;
+}
+
 body {
     margin:0;
     padding:0;
