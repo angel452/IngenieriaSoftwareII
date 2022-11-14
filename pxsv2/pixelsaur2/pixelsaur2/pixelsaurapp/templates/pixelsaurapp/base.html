@@ -12,45 +12,68 @@
   </head>
 
   <body>
-    <!-- Este Div es el nuevo para el login -->
-    <div id="header">
-      <!-- Aqui codigo backup -->
-      <li> <a href="http://127.0.0.1:8000/admin/"> <span>Login Administrator</span> </a> </li>
-
-      <span class="user">
-        {% if request.user.is_authenticated %}
-          Hello {{ request.user.first_name }}, <a href="{% url 'account:logout' %}">Logout</a>
-        {% else %}
-          <a href="{% url 'account:login' %}"> Log-in </a>
-        {% endif %}
-      </span>
-    </div>
-
-    <div id="content">
-      <div id="sidebar">
+    
+    <div id="sidebar">
         <img href="/" class="logo" src="{% static "img/logo_pixelsaur.png" %}"><br><br><br>
         
         <ul>
-            <ul>
-              <li><a href=""><i class="fa fa-circle-user" aria-hidden="true"></i> Perfil</a></li>
-              <li><a href=""><i class="fa fa-search" aria-hidden="true"></i> Buscar</a></li>
-              <li><a href=""><i class="fa-solid fa-book " aria-hidden="true"></i> Biblioteca</a></li>
-              <li><a href=""><i class="fa fa-duotone fa-wallet" aria-hidden="true" ></i> Balance</a></li>
-              
-            </ul>
+          <ul>
+            <li><a href=""><i class="fa fa-circle-user" aria-hidden="true"></i> Perfil</a></li>
+            <li><a href=""><i class="fa fa-search" aria-hidden="true"></i> Buscar</a></li>
+            <li><a href=""><i class="fa-solid fa-book " aria-hidden="true"></i> Biblioteca</a></li>
+            <li><a href=""><i class="fa fa-duotone fa-wallet" aria-hidden="true" ></i> Balance</a></li>
             
-            <li {% if not category %}class="selected"{% endif %}>
-              <a href="{% url "pixelsaurapp:product_list" %}" style="font-weight: 400; color:#FFFAFB">Categorías</a>
-            </li>
-            {% for c in categories %}
-            <li {% if category.slug == c.slug %}class="selected"{% endif %}>
-              <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-            </li>
-            {% endfor %}
           </ul>
+          
+          <li {% if not category %}class="selected"{% endif %}>
+            <a href="{% url "pixelsaurapp:product_list" %}" style="font-weight: 400; color:#FFFAFB">Categorías</a>
+          </li>
+          {% for c in categories %}
+          <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
       </div>
-      {% block content %}
-      {% endblock %}
+    <div class ="headercontent" style="display: flex; flex-direction: column;">
+      <!-- Este Div es el nuevo para el login -->
+    <div id="header">
+      <!-- Aqui codigo backup -->
+      <li id = "liheader" class="adminlogin"> <a href="http://127.0.0.1:8000/admin/"> <span>Login Administrator</span> </a> </li>
+      <li id = "liheader" class="usershow">
+
+        <span class="user">
+          {% if request.user.is_authenticated %}
+            Hello {{ request.user.first_name }}, <a href="{% url 'account:logout' %}">Logout</a>
+          {% else %}
+            <a href="{% url 'account:login' %}"> Log-in </a>
+          {% endif %}
+        </span>
+      </li>
+      <li id = "liheader" class="cart_header">
+
+        <div id="subheader">
+          <div class="cart">
+            {% with total_items=cart|length %}
+              {% if total_items > 0 %}
+              <img class="cart_img" src="{% static "img/cart.png" %}">
+                <a href="{% url "cart:cart_detail" %}" style="color:#FFFAFB; font-weight:300">
+                  {{ total_items }} item{{ total_items|pluralize }},
+                  ${{ cart.get_total_price }}
+                </a>
+              {% else %}
+                Your cart is empty.
+              {% endif %}
+            {% endwith %}
+          </div>
+        </div>
+      </div>
+      </li>
+      
+        
+        {% block content %}
+        {% endblock %}
+      
     </div>
   </body>
 </html>
