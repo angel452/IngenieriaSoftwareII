@@ -84,11 +84,27 @@ WSGI_APPLICATION = 'pixelsaur2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pxsdb3',
+        
+        ############### CAMBIAR NOMBRE BASE DE DATOS #######################
+        'NAME': 'pixelsaurdb2',
+
+        #Backup (Luis):
+        #'NAME': 'pxsdb3',
+
+        #Backup (Angel):
+        #'NAME': 'pixelsaurdb2',
 
         ############### CAMBIAR NOMBRE Y CONTRASEÑA  ########################
-        'USER': 'luisadmi',
-        'PASSWORD': '1234',
+        'USER': 'angel',
+        'PASSWORD': 'password',
+
+        #Backup (Luis):
+        #'USER': 'luisadmi',
+        #'PASSWORD': '1234',
+        
+        #Backup (Angel):
+        #'USER': 'angel',
+        #'PASSWORD': 'password',
         #####################################################################
         
         'HOST': 'localhost',
