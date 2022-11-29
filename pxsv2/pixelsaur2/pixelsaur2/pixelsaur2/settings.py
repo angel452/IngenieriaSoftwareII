@@ -87,11 +87,27 @@ WSGI_APPLICATION = 'pixelsaur2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        
+        ############### CAMBIAR NOMBRE BASE DE DATOS #######################
+        #'NAME': 'pixelsaurdb2',
+
+        #Backup (Luis):
         'NAME': 'pxsdb3',
 
+        #Backup (Angel):
+        #'NAME': 'pixelsaurdb2',
+
         ############### CAMBIAR NOMBRE Y CONTRASEÑA  ########################
+        #'USER': 'angel',
+        #'PASSWORD': 'password',
+
+        #Backup (Luis):
         'USER': 'luisadmi',
         'PASSWORD': '1234',
+        
+        #Backup (Angel):
+        #'USER': 'angel',
+        #'PASSWORD': 'password',
         #####################################################################
         
         'HOST': 'localhost',
@@ -152,3 +168,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'pixelsaurapp:product_list' 
 LOGIN_URL = 'account:login'
 LOGOUT_URL = 'account:logout'
+
+# Reset Password - email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

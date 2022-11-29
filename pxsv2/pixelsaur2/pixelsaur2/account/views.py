@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import LoginForm
 from pixelsaurapp.models import Category
 
+from .forms import LoginForm, UserRegistrationForm
 
 @login_required
 def dashboard(request):
@@ -32,12 +33,19 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'account/login.html', {'categories': categories,'form': form})
 
-def outview(request):
-    categories = Category.objects.all()
-"""
-def logoutview(request):
-    categories = Category.objects.all()
-    return()
 
 
-""" 
+def register(request):     
+    if request.method == 'POST': 
+        user_form = UserRegistrationForm(request.POST)
+        if user_form.is_valid():
+            # Create a new user object but avoid saving it yet
+            new_user = user_form.save(commit=False) 
+            # Set the chosen password
+            new_user.set_password( user_form.cleaned_data['password'])
+            # Save the User object
+            new_user.save()
+            return render(request, 'account/register_done.html',{'new_user': new_user})
+    else:
+        user_form = UserRegistrationForm()
+    return render(request,'account/register.html',{'user_form': user_form})
