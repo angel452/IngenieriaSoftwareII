@@ -3,10 +3,11 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
-from pixelsaurapp.models import Product
+from pixelsaurapp.models import Product, Category
 from .cart import Cart
 from .forms import CartAddProductForm
 from coupons.forms import CouponApplyForm
+
 
 #require_POST es necesario ya que estas funciones se validan despues de enviar el formulario
 
@@ -32,10 +33,11 @@ def cart_remove(request, product_id):
 #FUncion para mostrar el precio de detalle despues de agregacion de descuento
 def cart_detail(request):
     cart = Cart(request)
+    categories = Category.objects.all()
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(initial={ 'quantity': item['quantity'], 'override': True})
     
     coupon_apply_form = CouponApplyForm()
 
 
-    return render(request, 'cart/detail.html', {'cart': cart, 'coupon_apply_form': coupon_apply_form})
+    return render(request, 'cart/detail.html', {'cart': cart,'categories':categories, 'coupon_apply_form': coupon_apply_form})

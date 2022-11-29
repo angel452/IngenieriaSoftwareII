@@ -1,0 +1,13 @@
+{% extends "pixelsaurapp/base.html" %}
+{% block title %}
+Checkout
+{% endblock %}
+{% block content %}
+<h1>Completa tu regalo!</h1>
+
+<form method="POST" class="order-form">
+    {{ form.as_p }}
+    <p><input type="submit" value="Place order"></p>
+    {% csrf_token %}
+</form>
+{% endblock %}

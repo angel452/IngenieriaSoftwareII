@@ -1,0 +1,1 @@
+delete from my_library_mybuyedproducts where producto_comprado_id = 12;

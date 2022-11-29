@@ -1,5 +1,6 @@
 from django.db import models
 from pixelsaurapp.models import Product
+from django.contrib.auth.models import User  
 # Create your models here.
 class Order(models.Model):
     first_name = models.CharField(max_length=50)
@@ -18,6 +19,8 @@ class Order(models.Model):
     def get_total_cost(self):
         return sum(item.get_cost() for item in self.items.all())
 
+
+#esta clase se e #2da;sondfalk de dia
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE)

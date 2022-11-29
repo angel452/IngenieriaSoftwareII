@@ -24,8 +24,9 @@ urlpatterns = [
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
     path('coupons/', include('coupons.urls', namespace='coupons')),
+    path('my_library/', include('my_library.urls', namespace='my_library')),
     path('', include('pixelsaurapp.urls', namespace='pixelsaurapp')), #tiene que cambiarse
-
+    
 ]
 
 if settings.DEBUG:
