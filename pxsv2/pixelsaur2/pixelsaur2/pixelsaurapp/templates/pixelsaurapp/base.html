@@ -1,4 +1,5 @@
 {% load static %}
+{% load mptt_tags %}
 <!DOCTYPE html>
 <html>
 
@@ -10,6 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/801dcde776.js" crossorigin="anonymous"></script>
   </head>
+  
+
 
   <body>
     
@@ -20,19 +23,35 @@
           <ul>
             <li><a href=""><i class="fa fa-circle-user" aria-hidden="true"></i> Perfil</a></li>
             <li><a href=""><i class="fa fa-search" aria-hidden="true"></i> Buscar</a></li>
-            <li><a href=""><i class="fa-solid fa-book " aria-hidden="true"></i> Biblioteca</a></li>
+            <li><a href="{% url "my_library:my_product_list" %}"><i class="fa-solid fa-book " aria-hidden="true"></i> Biblioteca</a></li>
             <li><a href=""><i class="fa fa-duotone fa-wallet" aria-hidden="true" ></i> Balance</a></li>
             
           </ul>
+
           
+
           <li {% if not category %}class="selected"{% endif %}>
             <a href="{% url "pixelsaurapp:product_list" %}" style="font-weight: 400; color:#FFFAFB">Categorías</a>
           </li>
-          {% for c in categories %}
-          <li {% if category.slug == c.slug %}class="selected"{% endif %}>
-            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-          </li>
-          {% endfor %}
+          
+          {% if request.user.is_authenticated %}
+          <div>
+            <div>
+            <ul>
+            {% recursetree categories %}
+              <li>
+                <a href="{{ node.get_absolute_url }}">{{node.name}}</a>
+                {% if not node.is_leaf_node %}
+                  <ul class="children">
+                    {{ children }}
+                  </ul>
+                {% endif %}
+              </li>
+            {% endrecursetree %}
+          </ul>
+          </div>
+        </div>
+        {% endif %}
         </ul>
       </div>
     <div class ="headercontent" style="display: flex; flex-direction: column;">
@@ -42,14 +61,25 @@
       <li id = "liheader" class="adminlogin"> <a href="http://127.0.0.1:8000/admin/"> <span>Login Administrator</span> </a> </li>
       <li id = "liheader" class="usershow">
 
+        {% if request.user.is_authenticated %}
         <span class="user">
-          {% if request.user.is_authenticated %}
-            Hello {{ request.user.first_name }}, <a href="{% url 'account:logout' %}">Logout</a>
+            Hello {{ request.user.first_name }}  
+            <a href="{% url 'account:logout' %}">Logout</a>
+            Your money is {{ request.user.wallet.money }} 
           {% else %}
             <a href="{% url 'account:login' %}"> Log-in </a>
           {% endif %}
         </span>
       </li>
+
+      <li class="bandeja">
+        {% for mensaje in regalo %}
+          <a href="{{ mensaje.product.get_absolute_url }}">{{ mensaje.product.name }}</a>
+          <p>{{mensaje.desc_cod}}</p>
+          <p>{{mensaje.dedicatoria}}</p>
+        {% endfor %}
+      </li>
+     
       <li id = "liheader" class="cart_header">
 
         <div id="subheader">

@@ -1,0 +1,26 @@
+{% extends "pixelsaurapp/base.html" %}
+{% load static %}
+
+{% block title %}
+  {% if category %}{{ category.name }}{% else %}Mi libreria{% endif %}
+{% endblock %}
+
+{% block content %}
+  
+  
+  <div id="main" class="product-list">
+    <h1>{% if category %}{{ category.name }}{% else %}MI libreria{% endif %}</h1>
+    <div class="lista-prductos">
+      {% for product in my_products %}
+      <div class="item">
+        <a href="{{ product.get_downloadable_url }}">
+          <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+        </a>
+        <a href="{{ product.get_downloadable_url }}">{{ product.name }}</a>
+        <br>
+        ${{ product.price }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

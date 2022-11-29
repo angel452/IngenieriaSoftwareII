@@ -1,12 +1,22 @@
 from django.contrib import admin
-from .models import Category, Product
+from .models import Product,Category
+from mptt.admin import DraggableMPTTAdmin
+
 #LISTADO de elementos en admin
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    search_fields=['name']
-    list_display = ['name', 'slug']
-    prepopulated_fields = {'slug': ('name',)}
-    list_per_page = 10
+
+"""
+class AccountInline(admin.StackedInline):
+    model = User
+    can_delete = False
+    verbose_name_plural = 'Users'
+admin.site.unregister(User)
+admin.site.register(User, """
+"""
+ """
+class CategoryAdmin(DraggableMPTTAdmin):
+    pass
+
+admin.site.register(Category, CategoryAdmin )
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):

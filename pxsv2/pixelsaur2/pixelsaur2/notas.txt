@@ -1,0 +1,4 @@
+para hacer un mas descargados seria tener un atributo a la clase descargas que le sume al pixel.models.product cada vez que descarga
+voy a arreglar la vista de monedas, resta de monedas, preguntar porque no funciona
+voy a hacer el formulario de saldo
+mejorar el auth.views cambiarlo a algo personal para que entren las categorias

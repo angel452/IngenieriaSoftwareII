@@ -19,11 +19,22 @@
     </div>
     <!-- por ahora -->
     <br><br><br><br><br><br><br><br><br>
-    <form styke = "float:bottom" action="{% url "cart:cart_add" product.id %}" method="post">
+    <form style = "float:bottom" action="{% url "cart:cart_add" product.id %}" method="post">
       {{ cart_product_form }}
       {% csrf_token %}
       <input type="submit" value="Add to cart">
     </form>
+
+    <p class = "text-right">
+      <a href ="{% url "pixelsaurapp:form_regalo" product.id product.slug %}" class="button">
+        Comprar como regalo
+      </a>
+    </p>
+
+    <!--
+      <form method="post" action="{% url "enviar a un formulario directo de formulario regalo
+
+    -->
     {{ product.description|linebreaks }}
   </div>
 {% endblock %}

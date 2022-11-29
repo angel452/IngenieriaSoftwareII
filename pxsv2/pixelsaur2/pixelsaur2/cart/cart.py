@@ -2,6 +2,9 @@ from decimal import Decimal
 from django.conf import settings
 from pixelsaurapp.models import Product
 from coupons.models import Coupon
+from account.models import Wallet
+from django.contrib.auth.models import User
+
 
 #metodo carro donde definira las funciones de carrito de compras
 class Cart(object):
@@ -24,9 +27,10 @@ class Cart(object):
         Agrega elementos para una futura tabla compras
         """
         product_id = str(product.id)
+        code = str(product.id)+str(product.name)
         if product_id not in self.cart:
             self.cart[product_id] = {'quantity': 0,
-            'price': str(product.price)}
+            'price': str(product.price) , 'code':code}
         if override_quantity:
             self.cart[product_id]['quantity'] = quantity
         else:
@@ -68,6 +72,8 @@ class Cart(object):
     
     def get_total_price(self):
         # tenemos el precio total
+        #f code_discount = id+name
+        #create code_discount 100
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
     
     def clear(self):
@@ -91,5 +97,35 @@ class Cart(object):
             return (self.coupon.discount / Decimal(100)) \
             * self.get_total_price()
         return Decimal(0)
+    def get_specific_discount(self):
+        suma = 0
+        print('get_specific_discount')
+        print(self.coupon)
+        if self.coupon:
+        #print(self.cart.values())
+            for item in self.cart.values():
+                print(item['code'])
+                print(self.coupon.code)
+                print('after_only discount')
+                if self.coupon.code == item['code']:
+                    suma += Decimal(self.coupon.discount / Decimal(100)) \
+                        * item['price']
+                else:
+                    suma += item['price']
+            return suma
+        else:
+            return self.get_total_price()
+                
+            
     def get_total_price_after_discount(self):
         return self.get_total_price() - self.get_discount()
+
+    def cobrar_orden(self):
+        if User.Wallet.money > self.get_total_price_after_discount():
+            return 'no hay dinero suficiente'
+        else:
+            User.Wallet.money = User.Wallet.money - self.get_total_price_after_discount()
+            return 'correcto'
+    
+            
+        

@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'coupons.apps.CouponsConfig',
+    'my_library.apps.MyLibraryConfig',
+    'mptt'
     #'coupons',
 ]
 
@@ -70,6 +72,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cart.context_processors.cart',
+                #'my_library.context_processors.my_library',
             ],
         },
     },
