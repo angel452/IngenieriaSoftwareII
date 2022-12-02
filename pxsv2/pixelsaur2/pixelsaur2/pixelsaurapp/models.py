@@ -7,21 +7,7 @@ from coupons.models import Coupon
 from django import forms
 
 
-"""
-class User(AbstractUser):
-    username = models.CharField(max_length = 50, blank = True, null = True, unique = True)
-    #first_name = models.CharField(max_length = 50, blank = True, null = True, unique = True)
-    #last_name = models.CharField(max_length = 50, blank = True, null = True, unique = True)
-    is_active = models.BooleanField(default=True)
-    email = models.EmailField(max_length = 254)
-    money = models.DecimalField(max_digits=10,decimal_places=2,default=0.00,null=True,blank=True)
-    password    =   models.CharField(max_length=20, widget=forms.PasswordInput)
-    #USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
-    def __str__(self):
-        return "{}".format(self.email)   
-#     money = models.DecimalField(max_digits = 10, decimal_places = 2, default=0, null=True, blank = True)
-"""
+
 
 
 # Create your models here.
@@ -52,38 +38,44 @@ class Product(models.Model):
     
     created=models.DateField(auto_now_add=True,null=True,blank=True)
     updated=models.DateField(auto_now=True,null=True,blank=True)
-    n_descarga = models.IntegerField(null=True, blank=True)
-    val_promedio = models.FloatField(blank=True,null = True)
-    pos_valoracion = models.IntegerField(blank=True,null = True)
-    pos_descarga = models.IntegerField(null = True,blank=True)
+    n_descarga = models.IntegerField(default=0 ,blank=True)
+    val_promedio = models.FloatField(blank=True,default=0)
+    pos_valoracion = models.IntegerField(blank=True,default=9999)
+    pos_descarga = models.IntegerField(default=9999,blank=True)
 
-    def ondescarga(self):
-        self.n_descarga = self.n_descarga + 1
     def promedio(self,valor):
         self.val_promedio = (self.val_promedio +valor)/2
+    #define las posiciones respecto a las anteriores, de valoracion y de descargas
+    def get_posv(self):
+        return self.pos_valoracion
+    def set_posv(self, valor):
+        self.pos_valoracion = valor
+    def get_posd(self):
+        return self.n_descarga
+    def set_posd(self, valor):
+        self.pos_descarga = valor
+    #cada ves que descarga, suma en uno al n de descargas del producto
+    def ondescarga(self):
+        self.n_descarga = self.n_descarga +1
+        self.save()
     
-    
-    #valid download = false
-    #file = file
+   
     class Meta:
         ordering = ('name',)
         index_together = (('id','slug'),)
 
     def __str__(self):
         return self.name
-    #def is_downloadavle(self):
-    #   return available.
-    
+   
+    #url para redirigir a la pagina especifica
     def get_absolute_url(self):
-        #print('is this the path?')
-
         return reverse('pixelsaurapp:product_detail', args=[self.id, self.slug])
-    def get_downloadable_url(self):
-        #print('is this the path?')
+    
+    #url que redirecciona
+    def get_downloadable_url(self):   
         return reverse('my_library:my_product_detail', args=[self.id, self.slug])
+    #obtiene el link especifico del archivo, para las descargas
     def get_link(self):
-        print('gaaaaaaa')
-        print(self.archive.name)
         return '../../media/'+self.archive.name
     def save(self, *args, **kwargs):
       if not self.slug:
@@ -91,30 +83,14 @@ class Product(models.Model):
         self.slug = slugify(value, allow_unicode=True)
       super().save(*args, **kwargs)
 
+
+
 #tabla categoria perteneciente al DSV_12 los id, son automaticos, los nombres.
-"""
-class Category(models.Model):
-    
-    name = models.CharField(max_length=100,help_text="Nombre de la categoria",db_index=True)
-    #slug: genera un path ser tomado en las direcciones de la pagina web
-    slug = models.SlugField(max_length=200,unique=True)
-    
-
-    class Meta:
-        ordering = ('name',)
-        verbose_name = 'category'
-        verbose_name_plural = 'categories'
-    def __str__(self):
-        return self.name
-    def get_absolute_url(self):
-        return reverse('pixelsaurapp:product_list_by_category', args=[self.slug])
-"""
-
 class Category(MPTTModel):
     name = models.CharField(max_length=100, unique=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     slug = models.SlugField(max_length=100, null=True, blank=True)
-
+    #carga de libreria para poder mostrar la categoria en el administrador
     class MPTTMeta:
         order_insertion_by = ['name']
 
@@ -123,32 +99,39 @@ class Category(MPTTModel):
 
     def __str__(self):
         return self.name
-
+    #sobrecarga de la funcion save, que guarda los productos que nosotros deseamos
     def save(self, *args, **kwargs):
         value = self.name
         if not self.slug:
             self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
+    #funcion para obtener todos los hijos y poderlos filtrar en cada producto    
     def get_childrens(self):
         return Category.objects.filter(parent=self).all()
+
+    #redireccion para cargar los contenidos pertenecientes a una categoria    
     def get_absolute_url(self):
         return reverse('pixelsaurapp:product_list_by_category', args=[self.slug])    
 
+
+
+#tabla calificacion, que se redirigira a las otras tablas, la calificacion numerica y la fecha por producto
 class Calificacion(models.Model):
     product = models.ForeignKey(Product,related_name='reviews', on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name='reviews',on_delete=models.CASCADE,null=True)
     rating = models.FloatField(default=3.0)
     date_rating = models.DateField(auto_now_add=True, null=True)
-    #def get_absolute_url(self):
-    #    return self.product.get_absolute_url()
-
+ 
+#tabla de regalo, podra ser accesada por el que envia y por el que recibe
+#el que envia guarda la information en la tabla
+#el que recibe busca su id y muestra los contenidos referentes a su id
 class Regalo(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True,blank=True)
     desc_cod = models.CharField(max_length=50,unique=True, null=True, blank=True)
     user_send = models.ForeignKey( User, null=True, blank=True, on_delete=models.CASCADE)
     user_rece = models.EmailField( null=True, blank=True)
     dedicatoria = models.TextField(null=True, blank=True, max_length=200)
-
+    #funcion del que recibe, los mensajes que le pertenecen
     def get_mensajes(self,email):
         print(self.objects.all().filter(user_rece=email))
         return self.objects.all().filter(user_rece=email)

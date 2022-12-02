@@ -14,12 +14,13 @@ select * from pixelsaurapp_product;
 delete from pixelsaurapp_product where available = true;
 
 select * from coupons_coupon;
-delete from coupons_coupon where id = 7;
+delete from coupons_coupon where id = 9;
 select * from account_wallet;
 delete from pixelsaurapp_calificacion where created_by_id= 1;
 select * from pixelsaurapp_calificacion;
 select * from pixelsaurapp_regalo;
-delete from pixelsaurapp_regalo where id = 24;
+delete from pixelsaurapp_regalo where id = 26;
 SELECT * from my_library_mybuyedproducts;
-delete from my_library_mybuyedproducts where id = 7;
+delete from my_library_mybuyedproducts where id = 8;
 alter table pixelsaurapp_calificacion rename created_by to created_by_id;
+    select * from pixelsaurapp_product

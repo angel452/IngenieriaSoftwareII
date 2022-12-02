@@ -1,0 +1,23 @@
+{% extends "pixelsaurapp/base.html" %}
+{% load static %}
+
+{% block title %}
+  {% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% endblock %}
+
+{% block content %}
+  
+  
+  <div id="main" class="product-list">
+    <div class = "saldo-container">
+        <h3 class="cantidadsaldo">Saldo actual S/.{{request.user.wallet.get_money}}</h3>
+        <form method='POST' class ="busca">
+            <label >Solicitar recarga de</label>
+            <input type="number" placeholder="S/." min="0.00" max="150" name = "cantidad"> 
+            <button type="submit"></button>
+            {% csrf_token %}
+        </form>
+    </div>
+   
+  </div>
+{% endblock %}

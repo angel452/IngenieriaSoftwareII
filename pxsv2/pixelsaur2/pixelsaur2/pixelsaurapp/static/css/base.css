@@ -272,6 +272,9 @@ ul.errorlist {
     margin: 20px;
 }
 
+.mySlides.fade{
+    background: linear-gradient(#7DE2D1, #A100ED);
+}
 .product-list .item img {
     
     padding-left: 10px;
