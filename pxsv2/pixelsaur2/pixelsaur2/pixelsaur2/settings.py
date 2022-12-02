@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account.apps.AccountConfig',
+    'jazzmin',
     'django.contrib.admin',
     'pixelsaurapp.apps.PixelsaurappConfig',
     'cart.apps.CartConfig',
@@ -63,7 +64,8 @@ ROOT_URLCONF = 'pixelsaur2.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates/')],
+        #'DIRS': [os.path.join(BASE_DIR, 'templates/')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -171,3 +173,34 @@ LOGOUT_URL = 'account:logout'
 
 # Reset Password - email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+JAZZMIN_SETTINGS = {
+
+    "usermenu_links": [
+            {"name": "View Site", "url": "http://127.0.0.1:8000/", "new_window": False},
+            {"model": "auth.user"}
+        ],
+
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "PixelSaur Admin",
+
+    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_header": "PixelSaur",
+
+    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_brand": "PixelSaur",
+
+    # Logo to use for your site, must be present in static files, used for brand on top left
+    #"site_logo": "img/logo_pixelsaur.png",
+
+    # CSS classes that are applied to the logo above
+    #"site_logo_classes": "img-circle",
+
+    # Welcome text on the login screen
+    "welcome_sign": "Bienvenido a PixelSaur",
+
+    "site_logo_classes": "img-circle",
+
+    "login_logo": None,
+
+}

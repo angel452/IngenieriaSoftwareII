@@ -35,4 +35,7 @@ urlpatterns = [
 
     # -------------------- Register new user -------------------------------
     path('register/', views.register, name='register'),
+
+    # -------------------- Edit user -------------------------------
+    path('edit/', views.edit, name='edit'),
 ]
