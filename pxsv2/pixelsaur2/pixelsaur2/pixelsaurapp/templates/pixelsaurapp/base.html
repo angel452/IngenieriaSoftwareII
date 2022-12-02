@@ -72,7 +72,11 @@
           {% endif %}
         </span>
       </li>
-    
+
+      <li>
+        You can <a href="{% url "account:edit" %}"> edit </a>  your profile
+      </li>
+
       <li class="bandeja">
         {% for mensaje in regalo %}
           <a href="{{ mensaje.product.get_absolute_url }}">{{ mensaje.product.name }}</a>

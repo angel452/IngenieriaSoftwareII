@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import decimal
+from django.conf import settings
 
 # MOdelo billetera, esta es una extension al modelo de usuario, pero no por foreign key,como si fuera parte del modelo original, con una seccion de billetera
 class Wallet(models.Model):
@@ -22,3 +23,12 @@ class Wallet(models.Model):
     
     def __str__(self):
         return self.user.username
+
+# Model of Edit Profile
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) #can be (User?, on delete...)
+    date_of_birth = models.DateField(blank=True, null=True)
+    photo = models.ImageField(upload_to='user/%Y/%m/%d/', blank=True);
+
+def __str__(self):
+    return f'Profile for user {self.user.username}'
