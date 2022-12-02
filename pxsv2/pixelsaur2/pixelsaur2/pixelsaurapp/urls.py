@@ -13,6 +13,8 @@ urlpatterns = [
     path('<slug:category_slug>/', views.product_list, name='product_list_by_category'),
     path('<int:id>/<slug:slug>/',  views.product_detail, name='product_detail'),
     path('<int:id>/<slug:slug>/regalo',  views.form_regalo, name='form_regalo'),
+    path('busqueda', views.search_view, name='search_view'),
+    path('pedir-dinero',views.pedir_dinero, name='pedir_dinero'),
     #path('<int:id>/<slug:slug>/', views.regalo_create, name='regalo_create'),
     #path('<str:slug>/', ItemsByCategoryView.as_view() , name='category-detail'),
 

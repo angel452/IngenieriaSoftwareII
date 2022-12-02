@@ -17,7 +17,7 @@ admin.site.register(User,CustomizeUserAdmin)
 
 @admin.register(Wallet)
 class WalletAdmin(admin.ModelAdmin):
-    list_display = ['user','money',]
+    list_display = ['user','money','peticion']
 
 #@admin.register(User)
 #class wallet(admin.ModelAdmin):

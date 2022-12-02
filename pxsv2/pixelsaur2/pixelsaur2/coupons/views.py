@@ -9,12 +9,12 @@ from .forms import CouponApplyForm
 #obtener datos del formulario, comprobamos con la tabla cupones para aplicar
 @require_POST
 def coupon_apply(request):
-    #print('caaaaaaaaaaaaa')
+    
     now = timezone.now()
     form = CouponApplyForm(request.POST)
     if form.is_valid():
         code=form.cleaned_data['code']
-        #print(code)
+        
         try:
             coupon = Coupon.objects.get(code__iexact=code, valid_from__lte=now,valid_to__gte=now,active=True)
             request.session['coupon_id'] = coupon.id

@@ -2,15 +2,15 @@ from django.db import models
 from pixelsaurapp.models import Product
 from django.contrib.auth.models import User  
 # Create your models here.
+
+#clase orden,definicion de la tabla orden
 class Order(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
-    #address = models.CharField(max_length=250)
-    #postal_code = models.CharField(max_length=20)
-    #city = models.CharField(max_length=100)
+    
     created = models.DateTimeField(auto_now_add=True)
-    #updated = models.DateTimeField(auto_now=True)
+   
     paid = models.BooleanField(default=False)
     class Meta:
         ordering = ('-created',)
@@ -20,7 +20,7 @@ class Order(models.Model):
         return sum(item.get_cost() for item in self.items.all())
 
 
-#esta clase se e #2da;sondfalk de dia
+#tabla que define cada producto y sus datos
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE)
