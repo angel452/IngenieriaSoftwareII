@@ -48,6 +48,8 @@ class Product(models.Model):
     #define las posiciones respecto a las anteriores, de valoracion y de descargas
     def get_posv(self):
         return self.pos_valoracion
+    def get_calificaion(self):
+        return self.val_promedio
     def set_posv(self, valor):
         self.pos_valoracion = valor
     def get_posd(self):

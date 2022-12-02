@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from pixelsaurapp.models import Product
+from itertools import chain
+
 from .forms import ReviewCreateForm, DownloadForm
 
 # Create your views here.
@@ -53,7 +55,13 @@ def review_product(request, id,slug):
 
             Calificacion.objects.create(product = product, user =  request.user , rating = form.cleaned_data['rating'])
             messages.success(request, 'calificacion dada correctamente')
-            product.promedio(form.cleaned_data['rating'])
+            val = form.cleaned_data['rating']
+            val_p = Product.objects.filter(id =id).values('val_promedio')
+            val_p = val_p[0]['val_promedio'] 
+            print(val_p)
+            Product.objects.filter(id = id).update(val_promedio = (val_p + val)/2)
+            
+            product.promedio(val)
             return render(request,'my_library/product/detail.html',{'product':product,'categories':categories})
         else:
             form = ReviewCreateForm()

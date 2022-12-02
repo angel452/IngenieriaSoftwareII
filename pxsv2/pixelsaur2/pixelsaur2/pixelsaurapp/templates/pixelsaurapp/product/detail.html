@@ -18,7 +18,19 @@
       <p class="price">${{ product.price }}</p>
     </div>
     <!-- por ahora -->
-    <br><br><br><br><br><br><br><br><br>
+    
+    <label class="rating-label"><strong>Rating: </strong>
+    <br><br><br><br>
+      <input
+      class="rating rating--nojs"
+      max="5"
+      step="0.0005"
+      type="range"
+      name = "rating"
+      value="{{califi}}"readonly>
+    </label>
+    <br><br><br><br><br>
+    
     <form style = "float:bottom" action="{% url "cart:cart_add" product.id %}" method="post">
       {{ cart_product_form }}
       {% csrf_token %}

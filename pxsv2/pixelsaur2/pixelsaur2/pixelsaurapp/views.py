@@ -116,11 +116,14 @@ def product_detail(request, slug, id):
     cart_product_form = CartAddProductForm()
 
     categories = Category.objects.all()
+    califi = Product.objects.filter(id = id).values('val_promedio')
 
+    print(califi)
     return render(request,
                   'pixelsaurapp/product/detail.html',
                   {'product': product,
                     'slug':slug,'id':id,
+                    'califi':califi,
                   'categories': categories,
                    'cart_product_form': cart_product_form})
 
