@@ -23,17 +23,17 @@
       
         <div class="mySlides fade">
           <div class="numbertext">2 / 10</div>
-          <img src="{% if slides.0.image %}{{ slides.0.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">          <div class="text"> - {{ cambio.2 }}</div>
+          <img src="{% if slides.1.image %}{{ slides.1.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">          <div class="text"> - {{ cambio.2 }}</div>
           <a href="{{ slides.1.get_absolute_url }}">Compra ahora</a>
         </div>
         <div class="mySlides fade">
           <div class="numbertext">3 / 10</div>
-          <img src="{% if slides.0.image %}{{ slides.0.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">          <div class="text"> +{{ cambio.3 }}</div>
+          <img src="{% if slides.2.image %}{{ slides.2.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">          <div class="text"> +{{ cambio.3 }}</div>
           <a href="{{ slides.2.get_absolute_url }}">Compra ahora</a>
         </div>
         <div class="mySlides fade">
           <div class="numbertext">4 / 10</div>
-          <img src="{% if slides.0.image %}{{ slides.0.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">          <div class="text"> - {{ cambio.4 }}</div>
+          <img src="{% if slides.3.image %}{{ slides.3.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">          <div class="text"> - {{ cambio.4 }}</div>
           <a href="{{ slides.3.get_absolute_url }}">Compra ahora</a>
         </div>
 

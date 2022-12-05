@@ -6,7 +6,7 @@ from django.conf import settings
 # MOdelo billetera, esta es una extension al modelo de usuario, pero no por foreign key,como si fuera parte del modelo original, con una seccion de billetera
 class Wallet(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    money = models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True)
+    money = models.DecimalField(max_digits=10,decimal_places=2,default=0,blank=True)
     peticion = models.DecimalField(max_digits=10,decimal_places=2,blank=True,default=0.00)
     
     #getters y setters de la billetera

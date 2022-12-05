@@ -59,9 +59,12 @@ def review_product(request, id,slug):
             val_p = Product.objects.filter(id =id).values('val_promedio')
             val_p = val_p[0]['val_promedio'] 
             print(val_p)
-            Product.objects.filter(id = id).update(val_promedio = (val_p + val)/2)
+            ###
             
+            Product.objects.filter(id = id).update(val_promedio = (val_p + val)/2)
             product.promedio(val)
+            
+            ###
             return render(request,'my_library/product/detail.html',{'product':product,'categories':categories})
         else:
             form = ReviewCreateForm()

@@ -91,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         
         ############### CAMBIAR NOMBRE BASE DE DATOS #######################
-        'NAME': 'pixelsaurdb3',
+        'NAME': 'pxsdb3',
 
         #Backup (Luis):
         #'NAME': 'pxsdb3',
@@ -100,8 +100,8 @@ DATABASES = {
         #'NAME': 'pixelsaurdb3', 2
 
         ############### CAMBIAR NOMBRE Y CONTRASEÑA  ########################
-        'USER': 'angel2',
-        'PASSWORD': 'password',
+        'USER': 'luisadmi',
+        'PASSWORD': '1234',
 
         #Backup (Luis):
         #'USER': 'luisadmi',

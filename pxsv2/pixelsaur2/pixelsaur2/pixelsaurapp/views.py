@@ -1,18 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Category, Regalo
 from cart.forms import CartAddProductForm
-from django.template import loader
 
-from django.contrib.sessions.models import Session
-from django.contrib.auth.models import User
 from .forms import RegaloCreateForm, ViewForm, BusquedaForm, PedirDineroForm
-from django.views import generic
 from account.models import Wallet
 from coupons.models import Coupon
 from datetime import datetime, date, timedelta
 #for Login
-from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from account.models import Wallet
 #from .forms import LoginForm
